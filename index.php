@@ -3,14 +3,14 @@
 // Time started.
 define('__START__', microtime(true));
 
-define('FLUX_ROOT',			str_replace('\\', '/', dirname(__FILE__)));
-define('FLUX_DATA_DIR',		'data');
-define('FLUX_CONFIG_DIR',	'config');
-define('FLUX_LIB_DIR',		'lib');
-define('FLUX_MODULE_DIR',	'modules');
-define('FLUX_THEME_DIR',	'themes');
-define('FLUX_ADDON_DIR',	'addons');
-define('FLUX_LANG_DIR',		'lang');
+define('FLUX_ROOT', str_replace('\\', '/', dirname(__FILE__)));
+define('FLUX_DATA_DIR', 'data');
+define('FLUX_CONFIG_DIR', 'config');
+define('FLUX_LIB_DIR', 'lib');
+define('FLUX_MODULE_DIR', 'modules');
+define('FLUX_THEME_DIR', 'themes');
+define('FLUX_ADDON_DIR', 'addons');
+define('FLUX_LANG_DIR', 'lang');
 
 // Clean GPC arrays in the event magic_quotes_gpc is enabled.
 if (ini_get('magic_quotes_gpc')) {
@@ -24,10 +24,10 @@ if (ini_get('magic_quotes_gpc')) {
 	}
 }
 
-set_include_path(FLUX_LIB_DIR.PATH_SEPARATOR.get_include_path());
+set_include_path(FLUX_LIB_DIR . PATH_SEPARATOR . get_include_path());
 
 // Default account group IDs.
-require_once FLUX_CONFIG_DIR.'/groups.php';
+require_once FLUX_CONFIG_DIR . '/groups.php';
 
 // Some necessary Flux core libraries.
 require_once 'Flux.php';
@@ -42,15 +42,17 @@ require_once 'Flux/PermissionError.php';
 
 try {
 	// Initialize Flux.
-	Flux::initialize(array(
-		'appConfigFile'           => FLUX_CONFIG_DIR.'/application.php',
-		'serversConfigFile'       => FLUX_CONFIG_DIR.'/servers.php',
-		'appConfigFileImport'     => FLUX_CONFIG_DIR.'/import/application.php',
-		'serversConfigFileImport' => FLUX_CONFIG_DIR.'/import/servers.php',
-	));
+	Flux::initialize(
+		array(
+			'appConfigFile' => FLUX_CONFIG_DIR . '/application.php',
+			'serversConfigFile' => FLUX_CONFIG_DIR . '/servers.php',
+			'appConfigFileImport' => FLUX_CONFIG_DIR . '/import/application.php',
+			'serversConfigFileImport' => FLUX_CONFIG_DIR . '/import/servers.php',
+		)
+	);
 
 	// Set time limit.
-	set_time_limit((int)Flux::config('ScriptTimeLimit'));
+	set_time_limit((int) Flux::config('ScriptTimeLimit'));
 
 	// Set default timezone for entire app.
 	$timezone = Flux::config('DateDefaultTimezone');
@@ -60,28 +62,26 @@ try {
 
 	// Create some basic directories.
 	$directories = array(
-		FLUX_DATA_DIR.'/logs/schemas',
-		FLUX_DATA_DIR.'/logs/schemas/logindb',
-		FLUX_DATA_DIR.'/logs/schemas/charmapdb',
-		FLUX_DATA_DIR.'/logs/transactions',
-		FLUX_DATA_DIR.'/logs/mail',
-		FLUX_DATA_DIR.'/logs/mysql',
-		FLUX_DATA_DIR.'/logs/mysql/errors',
-		FLUX_DATA_DIR.'/logs/errors',
-		FLUX_DATA_DIR.'/logs/errors/exceptions',
-		FLUX_DATA_DIR.'/logs/errors/mail',
+		FLUX_DATA_DIR . '/logs/schemas',
+		FLUX_DATA_DIR . '/logs/schemas/logindb',
+		FLUX_DATA_DIR . '/logs/schemas/charmapdb',
+		FLUX_DATA_DIR . '/logs/transactions',
+		FLUX_DATA_DIR . '/logs/mail',
+		FLUX_DATA_DIR . '/logs/mysql',
+		FLUX_DATA_DIR . '/logs/mysql/errors',
+		FLUX_DATA_DIR . '/logs/errors',
+		FLUX_DATA_DIR . '/logs/errors/exceptions',
+		FLUX_DATA_DIR . '/logs/errors/mail',
 	);
 
 	// Schema log directories.
 	foreach (Flux::$loginAthenaGroupRegistry as $serverName => $loginAthenaGroup) {
-		$directories[] = FLUX_DATA_DIR."/logs/schemas/logindb/$serverName";
-		$directories[] = FLUX_DATA_DIR."/logs/schemas/charmapdb/$serverName";
+		$directories[] = FLUX_DATA_DIR . "/logs/schemas/logindb/$serverName";
+		$directories[] = FLUX_DATA_DIR . "/logs/schemas/charmapdb/$serverName";
 
 		foreach ($loginAthenaGroup->athenaServers as $athenaServer)
-			$directories[] = FLUX_DATA_DIR."/logs/schemas/charmapdb/$serverName/{$athenaServer->serverName}";
-	}
-
-	foreach ($directories as $directory) {
+			$directories[] = FLUX_DATA_DIR . "/logs/schemas/charmapdb/$serverName/{$athenaServer->serverName}";
+	}foreach ($directories as $directory) {
 		if (is_writable(dirname($directory)) && !is_dir($directory)) {
 			if (Flux::config('RequireOwnership'))
 				mkdir($directory, 0700);
@@ -94,9 +94,9 @@ try {
 		$uid = posix_getuid();
 
 	$directories = array(
-		FLUX_DATA_DIR.'/logs'		=> 'log storage',
-		FLUX_DATA_DIR.'/itemshop'	=> 'item shop image',
-		FLUX_DATA_DIR.'/tmp'		=> 'temporary'
+		FLUX_DATA_DIR . '/logs' => 'log storage',
+		FLUX_DATA_DIR . '/itemshop' => 'item shop image',
+		FLUX_DATA_DIR . '/tmp' => 'temporary'
 	);
 
 	foreach ($directories as $directory => $directoryFunction) {
@@ -106,7 +106,7 @@ try {
 		if (!is_writable($directory) && is_dir($directory))
 			throw new Flux_PermissionError("The $directoryFunction directory '$directory' is not writable.  Remedy with `chmod 0600 $directory`");
 		if (Flux::config('RequireOwnership') && function_exists('posix_getuid') && fileowner($directory) != $uid)
-			throw new Flux_PermissionError("The $directoryFunction directory '$directory' is not owned by the executing user.  Remedy with `chown -R ".posix_geteuid().":".posix_geteuid()." $directory`");
+			throw new Flux_PermissionError("The $directoryFunction directory '$directory' is not owned by the executing user.  Remedy with `chown -R " . posix_geteuid() . ":" . posix_geteuid() . " $directory`");
 	}
 
 	if (ini_get('session.use_trans_sid'))
@@ -114,7 +114,7 @@ try {
 
 	// Installer library.
 	$installer = Flux_Installer::getInstance();
-	if ($hasUpdates=$installer->updateNeeded())
+	if ($hasUpdates = $installer->updateNeeded())
 		Flux::config('ThemeName', array('installer'));
 
 	$sessionKey = Flux::config('SessionKey');
@@ -132,7 +132,7 @@ try {
 	Flux::$sessionData = new Flux_SessionData($_SESSION[$sessionKey], $hasUpdates);
 
 	// Initialize authorization component.
-	$accessConfig = Flux::parseConfigFile(FLUX_CONFIG_DIR.'/access.php');
+	$accessConfig = Flux::parseConfigFile(FLUX_CONFIG_DIR . '/access.php');
 
 	// Merge with add-on configs.
 	foreach (Flux::$addons as $addon) {
@@ -150,22 +150,23 @@ try {
 	// Dispatch requests->modules->actions->views.
 	$dispatcher = Flux_Dispatcher::getInstance();
 	$dispatcher->setDefaultModule(Flux::config('DefaultModule'));
-	$dispatcher->dispatch(array(
-		'basePath'					=> Flux::config('BaseURI'),
-		'useCleanUrls'				=> Flux::config('UseCleanUrls'),
-		'modulePath'				=> FLUX_MODULE_DIR,
-		'themePath'					=> FLUX_THEME_DIR,
-		'themeName'                 => Flux::$sessionData->theme,
-		'missingActionModuleAction'	=> Flux::config('DebugMode') ? array('errors', 'missing_action') : array('main', 'page_not_found'),
-		'missingViewModuleAction'	=> Flux::config('DebugMode') ? array('errors', 'missing_view')   : array('main', 'page_not_found')
-	));
-}
-catch (Exception $e) {
-	$exceptionDir = FLUX_DATA_DIR.'/logs/errors/exceptions';
+	$dispatcher->dispatch(
+		array(
+			'basePath' => Flux::config('BaseURI'),
+			'useCleanUrls' => Flux::config('UseCleanUrls'),
+			'modulePath' => FLUX_MODULE_DIR,
+			'themePath' => FLUX_THEME_DIR,
+			'themeName' => Flux::$sessionData->theme,
+			'missingActionModuleAction' => Flux::config('DebugMode') ? array('errors', 'missing_action') : array('main', 'page_not_found'),
+			'missingViewModuleAction' => Flux::config('DebugMode') ? array('errors', 'missing_view') : array('main', 'page_not_found')
+		)
+	);
+} catch (Exception $e) {
+	$exceptionDir = FLUX_DATA_DIR . '/logs/errors/exceptions';
 	if (is_writable($exceptionDir)) {
 		require_once 'Flux/LogFile.php';
 		$today = date('Ymd');
-		$eLog  = new Flux_LogFile("$exceptionDir/$today.log");
+		$eLog = new Flux_LogFile("$exceptionDir/$today.log");
 
 		// Log exception.
 		$eLog->puts('(%s) Exception %s: %s', get_class($e), get_class($e), $e->getMessage());
@@ -174,7 +175,7 @@ catch (Exception $e) {
 		}
 	}
 
-	require_once FLUX_CONFIG_DIR.'/error.php';
+	require_once FLUX_CONFIG_DIR . '/error.php';
 	define('__ERROR__', 1);
 	include $errorFile;
 }

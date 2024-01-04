@@ -19,7 +19,8 @@ define('FLUX_REPOSVERSION', getReposVersion());
  * scale. For the most part, it handles application initialization such as
  * parsing the configuration files and whatnot.
  */
-class Flux {
+class Flux
+{
 	/**
 	 * Current version.
 	 */
@@ -117,8 +118,8 @@ class Flux {
 		// Parse application and server configuration files, this will also
 		// handle configuration file normalization. See the source for the
 		// below methods for more details on what's being done.
-		self::$appConfig      = self::parseAppConfigFile($options['appConfigFile']);
-		self::$serversConfig  = self::parseServersConfigFile($options['serversConfigFile']);
+		self::$appConfig = self::parseAppConfigFile($options['appConfigFile']);
+		self::$serversConfig = self::parseServersConfigFile($options['serversConfigFile']);
 
 		if (array_key_exists('appConfigFileImport', $options) && file_exists($options['appConfigFileImport'])) {
 			$importAppConfig = self::parseAppConfigFile($options['appConfigFileImport'], true);
@@ -152,7 +153,7 @@ class Flux {
 	public static function initializeServerObjects()
 	{
 		foreach (self::$serversConfig->getChildrenConfigs() as $key => $config) {
-			$connection  = new Flux_Connection($config->getDbConfig(), $config->getLogsDbConfig(), $config->getWebDbConfig());
+			$connection = new Flux_Connection($config->getDbConfig(), $config->getLogsDbConfig(), $config->getWebDbConfig());
 			$loginServer = new Flux_LoginServer($config->getLoginServer());
 
 			// LoginAthenaGroup maintains the grouping of a central login
@@ -164,7 +165,7 @@ class Flux {
 
 			foreach ($config->getCharMapServers()->getChildrenConfigs() as $charMapServer) {
 				$charServer = new Flux_CharServer($charMapServer->getCharServer());
-				$mapServer  = new Flux_MapServer($charMapServer->getMapServer());
+				$mapServer = new Flux_MapServer($charMapServer->getMapServer());
 
 				// Create the collective server object, Flux_Athena.
 				$athena = new Flux_Athena($charMapServer, $loginServer, $charServer, $mapServer);
@@ -185,9 +186,9 @@ class Flux {
 			return false;
 		}
 
-		foreach (glob(FLUX_ADDON_DIR.'/*') as $addonDir) {
+		foreach (glob(FLUX_ADDON_DIR . '/*') as $addonDir) {
 			if (is_dir($addonDir)) {
-				$addonName   = basename($addonDir);
+				$addonName = basename($addonDir);
 				$addonObject = new Flux_Addon($addonName, $addonDir);
 				self::$addons[$addonName] = $addonObject;
 
@@ -210,8 +211,7 @@ class Flux {
 	{
 		if (!is_null($value)) {
 			return self::$appConfig->set($key, $value, $options);
-		}
-		else {
+		} else {
 			return self::$appConfig->get($key);
 		}
 	}
@@ -229,10 +229,10 @@ class Flux {
 		if (!is_null($value)) {
 			return self::$messagesConfig->set($key, $value, $options);
 		}
-		if (!is_null($tmp=self::$messagesConfig->get($key)))
+		if (!is_null($tmp = self::$messagesConfig->get($key)))
 			return $tmp;
 		else
-			return ' '.$key;
+			return ' ' . $key;
 	}
 
 	/**
@@ -265,17 +265,16 @@ class Flux {
 	 * @param string $filename
 	 * @access public
 	 */
-	public static function parseConfigFile($filename, $cache=true)
+	public static function parseConfigFile($filename, $cache = true)
 	{
-		$basename  = basename(str_replace(' ', '', ucwords(str_replace(array('/', '\\', '_'), ' ', $filename))), '.php').'.cache.php';
-		$cachefile = FLUX_DATA_DIR."/tmp/$basename";
-		$directory = FLUX_DATA_DIR.'/tmp';
+		$basename = basename(str_replace(' ', '', ucwords(str_replace(array('/', '\\', '_'), ' ', $filename))), '.php') . '.cache.php';
+		$cachefile = FLUX_DATA_DIR . "/tmp/$basename";
+		$directory = FLUX_DATA_DIR . '/tmp';
 		if (!is_dir($directory))
 			mkdir($directory, 0600);
 		if ($cache && file_exists($cachefile) && filemtime($cachefile) > filemtime($filename)) {
 			return unserialize(file_get_contents($cachefile, false, null, 28));
-		}
-		else {
+		} else {
 			ob_start();
 			// Uses require, thus assumes the file returns an array.
 			$config = require $filename;
@@ -286,11 +285,11 @@ class Flux {
 
 			if ($cache) {
 				$fp = fopen($cachefile, 'w');
-				if ( !$fp ){
-					self::raise("Failed to write ".$cachefile." permission error or data/tmp not exist in Flux::parseConfigFile()");
+				if (!$fp) {
+					self::raise("Failed to write " . $cachefile . " permission error or data/tmp not exist in Flux::parseConfigFile()");
 				}
 				fwrite($fp, '<?php exit("Forbidden."); ?>');
-				fwrite($fp, $s=serialize($cf), strlen($s));
+				fwrite($fp, $s = serialize($cf), strlen($s));
 				fclose($fp);
 			}
 
@@ -323,8 +322,10 @@ class Flux {
 				}
 			}
 		}
-		if (!($config->getPayPalReceiverEmails() instanceof Flux_Config)
-			&& !($import && $config->getPayPalReceiverEmails() === null)) {
+		if (
+			!($config->getPayPalReceiverEmails() instanceof Flux_Config)
+			&& !($import && $config->getPayPalReceiverEmails() === null)
+		) {
 			self::raise("PayPalReceiverEmails must be an array.");
 		}
 
@@ -333,8 +334,7 @@ class Flux {
 		if (!is_null($baseURI)) {
 			if (strlen($baseURI) && $baseURI[0] != '/') {
 				$config->set('BaseURI', "/$baseURI");
-			}
-			elseif (trim($baseURI) === '') {
+			} elseif (trim($baseURI) === '') {
 				$config->set('BaseURI', '/');
 			}
 		}
@@ -352,9 +352,9 @@ class Flux {
 	 */
 	public static function parseServersConfigFile($filename, $import = false)
 	{
-		$config            = self::parseConfigFile($filename);
-		$options           = array('overwrite' => false, 'force' => true); // Config::set() options.
-		$serverNames       = array();
+		$config = self::parseConfigFile($filename);
+		$options = array('overwrite' => false, 'force' => true); // Config::set() options.
+		$serverNames = array();
 		$athenaServerNames = array();
 
 		if (!count($config->toArray()) && !$import) {
@@ -368,8 +368,7 @@ class Flux {
 
 			if (!($serverName = $topConfig->getServerName())) {
 				self::raise('ServerName is required for each top-level server configuration, check your servers configuration file.');
-			}
-			elseif (in_array($serverName, $serverNames)) {
+			} elseif (in_array($serverName, $serverNames)) {
 				self::raise("The server name '$serverName' has already been configured. Please use another name.");
 			}
 
@@ -382,10 +381,10 @@ class Flux {
 			$topConfig->setLoginServer(array(), $options);
 			$topConfig->setCharMapServers(array(), $options);
 
-			$dbConfig     = $topConfig->getDbConfig();
+			$dbConfig = $topConfig->getDbConfig();
 			$logsDbConfig = $topConfig->getLogsDbConfig();
-			$webDbConfig  = $topConfig->getWebDbConfig();
-			$loginServer  = $topConfig->getLoginServer();
+			$webDbConfig = $topConfig->getWebDbConfig();
+			$loginServer = $topConfig->getLoginServer();
 
 			foreach (array($dbConfig, $logsDbConfig, $webDbConfig) as $_dbConfig) {
 				$_dbConfig->setHostname('localhost', $options);
@@ -400,8 +399,7 @@ class Flux {
 			// Raise error if missing essential configuration directives.
 			if (!$loginServer->getAddress()) {
 				self::raise('Address is required for each LoginServer section in your servers configuration.');
-			}
-			elseif (!$loginServer->getPort()) {
+			} elseif (!$loginServer->getPort()) {
 				self::raise('Port is required for each LoginServer section in your servers configuration.');
 			}
 
@@ -414,40 +412,40 @@ class Flux {
 				// Char/Map normalization.
 				//
 				$expRates = array(
-					'Base'        => 100,
-					'Job'         => 100,
-					'Mvp'         => 100
+					'Base' => 100,
+					'Job' => 100,
+					'Mvp' => 100
 				);
 				$dropRates = array(
 					'DropRateCap' => 9000,
-					'Common'      => 100,
-					'CommonBoss'  => 100,
-					'CommonMVP'   => 100,
-					'CommonMin'   => 1,
-					'CommonMax'   => 10000,
-					'Heal'        => 100,
-					'HealBoss'    => 100,
-					'HealMVP'     => 100,
-					'HealMin'     => 1,
-					'HealMax'     => 10000,
-					'Useable'     => 100,
+					'Common' => 100,
+					'CommonBoss' => 100,
+					'CommonMVP' => 100,
+					'CommonMin' => 1,
+					'CommonMax' => 10000,
+					'Heal' => 100,
+					'HealBoss' => 100,
+					'HealMVP' => 100,
+					'HealMin' => 1,
+					'HealMax' => 10000,
+					'Useable' => 100,
 					'UseableBoss' => 100,
-					'UseableMVP'  => 100,
-					'UseableMin'  => 1,
-					'UseableMax'  => 10000,
-					'Equip'       => 100,
-					'EquipBoss'   => 100,
-					'EquipMVP'    => 100,
-					'EquipMin'    => 1,
-					'EquipMax'    => 10000,
-					'Card'        => 100,
-					'CardBoss'    => 100,
-					'CardMVP'     => 100,
-					'CardMin'     => 1,
-					'CardMax'     => 10000,
-					'MvpItem'     => 100,
-					'MvpItemMin'  => 1,
-					'MvpItemMax'  => 10000,
+					'UseableMVP' => 100,
+					'UseableMin' => 1,
+					'UseableMax' => 10000,
+					'Equip' => 100,
+					'EquipBoss' => 100,
+					'EquipMVP' => 100,
+					'EquipMin' => 1,
+					'EquipMax' => 10000,
+					'Card' => 100,
+					'CardBoss' => 100,
+					'CardMVP' => 100,
+					'CardMin' => 1,
+					'CardMax' => 10000,
+					'MvpItem' => 100,
+					'MvpItemMin' => 1,
+					'MvpItemMax' => 10000,
 					'MvpItemMode' => 0
 				);
 				$charMapServer->setExpRates($expRates, $options);
@@ -459,8 +457,7 @@ class Flux {
 
 				if (!($athenaServerName = $charMapServer->getServerName())) {
 					self::raise('ServerName is required for each CharMapServers pair in your servers configuration.');
-				}
-				elseif (in_array($athenaServerName, $athenaServerNames[$serverName])) {
+				} elseif (in_array($athenaServerName, $athenaServerNames[$serverName])) {
 					self::raise("The server name '$athenaServerName' under '$serverName' has already been configured. Please use another name.");
 				}
 
@@ -469,16 +466,14 @@ class Flux {
 
 				if (!$charServer->getAddress()) {
 					self::raise('Address is required for each CharServer section in your servers configuration.');
-				}
-				elseif (!$charServer->getPort()) {
+				} elseif (!$charServer->getPort()) {
 					self::raise('Port is required for each CharServer section in your servers configuration.');
 				}
 
 				$mapServer = $charMapServer->getMapServer();
 				if (!$mapServer->getAddress()) {
 					self::raise('Address is required for each MapServer section in your servers configuration.');
-				}
-				elseif (!$mapServer->getPort()) {
+				} elseif (!$mapServer->getPort()) {
 					self::raise('Port is required for each MapServer section in your servers configuration.');
 				}
 			}
@@ -507,27 +502,25 @@ class Flux {
 	 * @param string $addonName
 	 * @access public
 	 */
-	public static function parseLanguageConfigFile($addonName=null)
+	public static function parseLanguageConfigFile($addonName = null)
 	{
-		$default = $addonName ? FLUX_ADDON_DIR."/$addonName/lang/en_us.php" : FLUX_LANG_DIR.'/en_us.php';
+		$default = $addonName ? FLUX_ADDON_DIR . "/$addonName/lang/en_us.php" : FLUX_LANG_DIR . '/en_us.php';
 		$current = $default;
 
-		if ($lang=self::config('DefaultLanguage')) {
-			$current = $addonName ? FLUX_ADDON_DIR."/$addonName/lang/$lang.php" : FLUX_LANG_DIR."/$lang.php";
+		if ($lang = self::config('DefaultLanguage')) {
+			$current = $addonName ? FLUX_ADDON_DIR . "/$addonName/lang/$lang.php" : FLUX_LANG_DIR . "/$lang.php";
 		}
 
 		$languages = self::getAvailableLanguages();
 
-		if(!empty($_COOKIE["language"]) && array_key_exists($_COOKIE["language"], $languages))
-		{
+		if (!empty($_COOKIE["language"]) && array_key_exists($_COOKIE["language"], $languages)) {
 			$lang = $_COOKIE["language"];
-			$current = $addonName ? FLUX_ADDON_DIR."/$addonName/lang/$lang.php" : FLUX_LANG_DIR."/$lang.php";
+			$current = $addonName ? FLUX_ADDON_DIR . "/$addonName/lang/$lang.php" : FLUX_LANG_DIR . "/$lang.php";
 		}
 
 		if (file_exists($default)) {
 			$def = self::parseConfigFile($default);
-		}
-		else {
+		} else {
 			$tmp = array();
 			$def = new Flux_Config($tmp);
 		}
@@ -548,7 +541,7 @@ class Flux {
 	 */
 	public static function themeExists($themeName)
 	{
-		return is_dir(FLUX_THEME_DIR."/$themeName");
+		return is_dir(FLUX_THEME_DIR . "/$themeName");
 	}
 
 	/**
@@ -595,10 +588,9 @@ class Flux {
 	{
 		$registry = &self::$loginAthenaGroupRegistry;
 
-		if (array_key_exists($serverName, $registry) && $registry[$serverName] instanceOf Flux_LoginAthenaGroup) {
+		if (array_key_exists($serverName, $registry) && $registry[$serverName] instanceof Flux_LoginAthenaGroup) {
 			return $registry[$serverName];
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -614,12 +606,13 @@ class Flux {
 	public static function getAthenaServerByName($serverName, $athenaServerName)
 	{
 		$registry = &self::$athenaServerRegistry;
-		if (array_key_exists($serverName, $registry) && array_key_exists($athenaServerName, $registry[$serverName]) &&
-			$registry[$serverName][$athenaServerName] instanceOf Flux_Athena) {
+		if (
+			array_key_exists($serverName, $registry) && array_key_exists($athenaServerName, $registry[$serverName]) &&
+			$registry[$serverName][$athenaServerName] instanceof Flux_Athena
+		) {
 
 			return $registry[$serverName][$athenaServerName];
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -646,13 +639,12 @@ class Flux {
 	 */
 	public static function getJobClass($id)
 	{
-		$key   = "JobClasses.$id";
+		$key = "JobClasses.$id";
 		$class = self::config($key);
 
 		if ($class) {
 			return $class;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -669,8 +661,7 @@ class Flux {
 		$index = self::config('JobClassIndex')->toArray();
 		if (array_key_exists($class, $index)) {
 			return $index[$class];
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -684,13 +675,12 @@ class Flux {
 	 */
 	public static function getHomunClass($id)
 	{
-		$key   = "HomunClasses.$id";
+		$key = "HomunClasses.$id";
 		$class = self::config($key);
 
 		if ($class) {
 			return $class;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -710,8 +700,7 @@ class Flux {
 
 		if ($type[strtolower($id1)] != NULL) {
 			return $type[strtolower($id1)];
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -722,8 +711,7 @@ class Flux {
 
 		if ($result) {
 			return $result;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -733,13 +721,12 @@ class Flux {
 	 */
 	public static function getRandOption($id1)
 	{
-		$key   = "RandomOptions.$id1";
+		$key = "RandomOptions.$id1";
 		$option = self::config($key);
 
 		if ($option) {
 			return $option;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -762,47 +749,46 @@ class Flux {
 	 */
 	public static function processHeldCredits()
 	{
-		$txnLogTable            = self::config('FluxTables.TransactionTable');
-		$trustTable             = self::config('FluxTables.DonationTrustTable');
-		$loginAthenaGroups      = self::$loginAthenaGroupRegistry;
-		list ($cancel, $accept) = array(array(), array());
+		$txnLogTable = self::config('FluxTables.TransactionTable');
+		$trustTable = self::config('FluxTables.DonationTrustTable');
+		$loginAthenaGroups = self::$loginAthenaGroupRegistry;
+		list($cancel, $accept) = array(array(), array());
 
 		foreach ($loginAthenaGroups as $loginAthenaGroup) {
-			$sql  = "SELECT account_id, payer_email, credits, mc_gross, txn_id, hold_until ";
+			$sql = "SELECT account_id, payer_email, credits, mc_gross, txn_id, hold_until ";
 			$sql .= "FROM {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
 			$sql .= "WHERE account_id > 0 AND hold_until IS NOT NULL AND payment_status = 'Completed'";
-			$sth  = $loginAthenaGroup->connection->getStatement($sql);
+			$sth = $loginAthenaGroup->connection->getStatement($sql);
 
-			if ($sth->execute() && ($txn=$sth->fetchAll())) {
+			if ($sth->execute() && ($txn = $sth->fetchAll())) {
 				foreach ($txn as $t) {
-					$sql  = "SELECT id FROM {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
+					$sql = "SELECT id FROM {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
 					$sql .= "WHERE payment_status IN ('Cancelled_Reversed', 'Reversed', 'Refunded') AND parent_txn_id = ? LIMIT 1";
-					$sth  = $loginAthenaGroup->connection->getStatement($sql);
+					$sth = $loginAthenaGroup->connection->getStatement($sql);
 
-					if ($sth->execute(array($t->txn_id)) && ($r=$sth->fetch()) && $r->id) {
+					if ($sth->execute(array($t->txn_id)) && ($r = $sth->fetch()) && $r->id) {
 						$cancel[] = $t->txn_id;
-					}
-					elseif (strtotime($t->hold_until) <= time()) {
+					} elseif (strtotime($t->hold_until) <= time()) {
 						$accept[] = $t;
 					}
 				}
 			}
 
 			if (!empty($cancel)) {
-				$ids  = implode(', ', array_fill(0, count($cancel), '?'));
-				$sql  = "UPDATE {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
+				$ids = implode(', ', array_fill(0, count($cancel), '?'));
+				$sql = "UPDATE {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
 				$sql .= "SET credits = 0, hold_until = NULL WHERE txn_id IN ($ids)";
-				$sth  = $loginAthenaGroup->connection->getStatement($sql);
+				$sth = $loginAthenaGroup->connection->getStatement($sql);
 				$sth->execute($cancel);
 			}
 
-			$sql2   = "INSERT INTO {$loginAthenaGroup->loginDatabase}.$trustTable (account_id, email, create_date)";
-			$sql2  .= "VALUES (?, ?, NOW())";
-			$sth2   = $loginAthenaGroup->connection->getStatement($sql2);
+			$sql2 = "INSERT INTO {$loginAthenaGroup->loginDatabase}.$trustTable (account_id, email, create_date)";
+			$sql2 .= "VALUES (?, ?, NOW())";
+			$sth2 = $loginAthenaGroup->connection->getStatement($sql2);
 
-			$sql3   = "SELECT id FROM {$loginAthenaGroup->loginDatabase}.$trustTable WHERE ";
-			$sql3  .= "delete_date IS NULL AND account_id = ? AND email = ? LIMIT 1";
-			$sth3   = $loginAthenaGroup->connection->getStatement($sql3);
+			$sql3 = "SELECT id FROM {$loginAthenaGroup->loginDatabase}.$trustTable WHERE ";
+			$sql3 .= "delete_date IS NULL AND account_id = ? AND email = ? LIMIT 1";
+			$sth3 = $loginAthenaGroup->connection->getStatement($sql3);
 
 			$idvals = array();
 
@@ -819,10 +805,10 @@ class Flux {
 			}
 
 			if (!empty($idvals)) {
-				$ids  = implode(', ', array_fill(0, count($idvals), '?'));
-				$sql  = "UPDATE {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
+				$ids = implode(', ', array_fill(0, count($idvals), '?'));
+				$sql = "UPDATE {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
 				$sql .= "SET hold_until = NULL WHERE txn_id IN ($ids)";
-				$sth  = $loginAthenaGroup->connection->getStatement($sql);
+				$sth = $loginAthenaGroup->connection->getStatement($sql);
 
 				$sth->execute($idvals);
 			}
@@ -834,14 +820,14 @@ class Flux {
 	 */
 	public static function pruneUnconfirmedAccounts()
 	{
-		$tbl    = Flux::config('FluxTables.AccountCreateTable');
+		$tbl = Flux::config('FluxTables.AccountCreateTable');
 
 		foreach (self::$loginAthenaGroupRegistry as $loginAthenaGroup) {
-			$db   = $loginAthenaGroup->loginDatabase;
-			$sql  = "DELETE $db.login, $db.$tbl FROM $db.login INNER JOIN $db.$tbl ";
+			$db = $loginAthenaGroup->loginDatabase;
+			$sql = "DELETE $db.login, $db.$tbl FROM $db.login INNER JOIN $db.$tbl ";
 			$sql .= "WHERE login.account_id = $tbl.account_id AND $tbl.confirmed = 0 ";
 			$sql .= "AND $tbl.confirm_code IS NOT NULL AND $tbl.confirm_expire <= NOW()";
-			$sth  = $loginAthenaGroup->connection->getStatement($sql);
+			$sth = $loginAthenaGroup->connection->getStatement($sql);
 
 			$sth->execute();
 		}
@@ -865,7 +851,7 @@ class Flux {
 	{
 		$equipupper = Flux::config('EquipUpper.0')->toArray();
 
-		if($isRenewal)
+		if ($isRenewal)
 			$equipupper = array_merge($equipupper, Flux::config('EquipUpper.1')->toArray());
 
 		return $equipupper;
@@ -878,7 +864,7 @@ class Flux {
 	{
 		$equipjobs = Flux::config('EquipJobs.0')->toArray();
 
-		if($isRenewal)
+		if ($isRenewal)
 			$equipjobs = array_merge($equipjobs, Flux::config('EquipJobs.1')->toArray());
 
 		return $equipjobs;
@@ -921,7 +907,7 @@ class Flux {
 	 */
 	public static function equipUpperToArray($bitmask, $isRenewal = 1)
 	{
-		$arr  = array();
+		$arr = array();
 		$bits = self::getEquipUpperList($isRenewal);
 
 		foreach ($bits as $bit => $name) {
@@ -941,7 +927,7 @@ class Flux {
 	 */
 	public static function equipJobsToArray($bitmask)
 	{
-		$arr  = array();
+		$arr = array();
 		$bits = self::getEquipJobsList();
 
 		foreach ($bits as $bit => $name) {
@@ -958,11 +944,11 @@ class Flux {
 	 */
 	public static function monsterModeToArray($bitmask)
 	{
-		$arr  = array();
+		$arr = array();
 		$bits = self::config('MonsterModes')->toArray();
 
 		foreach ($bits as $name) {
-				$arr[] = $name;
+			$arr[] = $name;
 		}
 
 		return $arr;
@@ -1000,9 +986,9 @@ class Flux {
 		$langs_available = array_diff(scandir(FLUX_LANG_DIR), array('..', '.'));
 
 		$dictionary = [];
-		foreach($langs_available as $lang_file) {
+		foreach ($langs_available as $lang_file) {
 			$lang_key = str_replace('.php', '', $lang_file);
-			$lang_conf = self::parseConfigFile(FLUX_LANG_DIR.'/'.$lang_file);
+			$lang_conf = self::parseConfigFile(FLUX_LANG_DIR . '/' . $lang_file);
 			$lang_name = $lang_conf->get('Language');
 
 			$dictionary[$lang_key] = $lang_name;
