@@ -1,0 +1,397 @@
+/* custom dropdown  */
+/* #main {
+  max-width: 1120px;
+  font-family: "Inter-Regular";
+  border-radius: 5px;
+  margin: 0px auto;
+  color: var(--themeTextColor);
+  font-size: 9pt;
+  padding: 50px 15px;
+} */
+.global-container {
+  margin-bottom: 0;
+}
+.nav-link.al_custom_dropdown {
+  background: inherit;
+  border: none;
+  color: #fff;
+}
+.nav-link.al_custom_dropdown:hover {
+  color: var(--themeColor);
+}
+.al_custom_dropdown_menu {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 997;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  top: 70px;
+  width: 100%;
+  min-width: 170px;
+  border-radius: 0 0 5px 5px;
+}
+.header-scrolled .al_custom_dropdown_menu {
+  top: 60px;
+}
+.al_active .al_custom_dropdown_menu {
+  display: block !important;
+}
+.al_drop_navs {
+  padding: 0 15px;
+}
+.al_drop_navs a {
+  padding: 8px 0 !important;
+}
+
+.slideshow {
+  list-style-type: none;
+}
+
+/** SLIDESHOW **/
+.slideshow,
+.slideshow:after {
+  top: 0; /*Not sure why I needed this fix*/
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  z-index: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.slideshow li span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  color: transparent;
+  background-size: cover;
+  /* background-position: 50% 50%; */
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 30s linear infinite 0s;
+}
+
+.slideshow li:nth-child(1) span {
+  background-image: url("../img/hero_slider/1.jpg");
+}
+.slideshow li:nth-child(2) span {
+  background-image: url("../img/hero_slider/2.png");
+  animation-delay: 6s;
+}
+.slideshow li:nth-child(3) span {
+  background-image: url("../img/hero_slider/3.jpg");
+  animation-delay: 12s;
+}
+.slideshow li:nth-child(4) span {
+  background-image: url("../img/hero_slider/4.jpg");
+  animation-delay: 12s;
+}
+.slideshow li:nth-child(5) span {
+  background-image: url("../img/hero_slider/5.jpg");
+  animation-delay: 18s;
+}
+.slideshow li:nth-child(6) span {
+  background-image: url("../img/hero_slider/6.jpg");
+  animation-delay: 18s;
+}
+.slideshow li:nth-child(7) span {
+  background-image: url("../img/hero_slider/7.jpg");
+  animation-delay: 18s;
+}
+.slideshow li:nth-child(8) span {
+  background-image: url("../img/hero_slider/8.jpg");
+  animation-delay: 18s;
+}
+.slideshow li:nth-child(9) span {
+  background-image: url("../img/hero_slider/9.jpg");
+  animation-delay: 18s;
+}
+.slideshow li:nth-child(10) span {
+  background-image: url("../img/hero_slider/10.jpg");
+  animation-delay: 18s;
+}
+.slideshow li:nth-child(11) span {
+  background-image: url("../img/hero_slider/11.png");
+  animation-delay: 18s;
+}
+.slideshow li:nth-child(12) span {
+  background-image: url("../img/hero_slider/12.png");
+  animation-delay: 18s;
+}
+
+.slideshow li:nth-child(13) span {
+  background-image: url("../img/hero_slider/13.png");
+  animation-delay: 18s;
+}
+.slideshow li:nth-child(14) span {
+  background-image: url("../img/hero_slider/14.png");
+  animation-delay: 18s;
+}
+
+@keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in;
+  }
+  8% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  17% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes titleAnimation {
+  0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  17% {
+    opacity: 1;
+  }
+  19% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.no-cssanimations .cb-slideshow li span {
+  opacity: 1;
+}
+
+.al_horoslider .owl-carousel .owl-nav {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 20%;
+  transform: translateY(-20%);
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.al_horoslider .owl-carousel .owl-nav button.owl-prev,
+.al_horoslider .owl-carousel .owl-nav button.owl-next {
+  padding: 10px 15px !important;
+  border: 2px solid gray !important;
+  border-radius: 50%;
+  transform: rotateZ(-180deg);
+}
+
+.al_horoslider .owl-carousel .owl-nav button.owl-prev *,
+.owl-carousel .owl-nav button.owl-next * {
+  vertical-align: text-bottom;
+}
+
+.al_horoslider.slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.al_horoslider.slider .text-slider-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.al_horoslider.slider .text-slider-content .text-carousel .slide-elem {
+  font-family: Impact;
+  font-size: 140px;
+  z-index: -1;
+}
+
+.al_horoslider.slider .text-slider-content .text-carousel span {
+  transition: all ease-out 0.5s;
+  color: lightgray;
+}
+
+.al_horoslider.slider .text-slider-content .text-carousel .center span {
+  color: #000;
+}
+
+.al_horoslider.slider .character-carousel {
+  position: relative;
+}
+
+.al_horoslider.slider .character-carousel .slide-elem {
+  text-align: center;
+}
+
+.al_horoslider.slider .character-carousel .slide-elem img {
+  width: auto !important;
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+:root {
+  --surface-color: #fff;
+  --curve: 40;
+}
+
+.al_def.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  /* margin: 4rem 5vw; */
+  padding: 0;
+  list-style-type: none;
+}
+
+.al_def .card {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.al_def .card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  min-height: 500px;
+  object-fit: cover;
+}
+
+.al_def .card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  border-radius: calc(var(--curve) * 1px);
+  background-color: var(--surface-color);
+  transform: translateY(100%);
+  transition: 0.2s ease-in-out;
+}
+.al_def .owl-item.center .card .card__overlay,
+.al_def .card:hover .card__overlay {
+  transform: translateY(0);
+}
+
+.al_def .card__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 1.5em;
+  border-radius: calc(var(--curve) * 1px) 0 0 0;
+  background-color: var(--surface-color);
+  transform: translateY(-100%);
+  transition: 0.2s ease-in-out;
+}
+
+.al_def .card__arc {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  z-index: 1;
+}
+
+.al_def .card__arc path {
+  fill: var(--surface-color);
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+}
+
+.al_def .owl-item.center .card .card__header,
+.al_def .card:hover .card__header {
+  transform: translateY(0);
+}
+.al_def .card:hover .card__title {
+  color: var(--themeColor);
+}
+
+.al_def .card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.al_def .card__title {
+  font-size: 1em;
+  margin: 0 0 0.3em;
+  color: #6a515e;
+  font-family: "Inter-Bold";
+  color: var(--themeTextColor);
+  font-size: 11pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+}
+.al_def .date {
+  font-family: "Inter-Regular";
+  font-size: 8pt;
+  color: var(--themeTextColor);
+}
+
+.al_def .card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "MockFlowFont";
+  font-size: 0.8em;
+  color: #d7bdca;
+}
+
+.al_def .card__status {
+  font-size: 0.8em;
+  color: #d7bdca;
+}
+
+.al_def .card__description {
+  padding: 0 1.5em 1.5em;
+  margin: 0;
+  color: #d7bdca;
+  font-family: "MockFlowFont";
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.al_def p {
+  color: var(--themeTextColor);
+  font-family: "Inter-Regular";
+  font-size: 8pt;
+  max-height: 75px;
+  overflow: hidden;
+}
+.al_def .read-more {
+  color: var(--themeColor) !important;
+  text-transform: capitalize;
+  text-decoration: underline;
+  text-align: right;
+  float: right;
+  font-family: "Inter-Bold";
+  font-size: 8pt;
+}
+
+.al_def .author {
+  font-family: "Inter-Bold";
+  font-size: 9pt;
+}

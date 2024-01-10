@@ -3,19 +3,19 @@
 		Carousel & Pop up
 	----------------------------*/		
 	$(document).ready(function() {
-		var owl = $('.owl-carousel');
-		owl.owlCarousel({
+		var globowl = $('.global_owl-carousel');
+		globowl.owlCarousel({
 		  items: 4,
 		  center: true,
 		  responsive: {
 			  0: {
-				  items: 2
+				  items: 1
 			  },
 			  576: {
 				  items: 2
 			  },					
 			  992: {
-				  items: 4
+				  items: 3
 			  },
 			  1200: {
 				  items: 4
@@ -27,7 +27,7 @@
 		  navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
 		  autoplay: false,
 		  autoplayTimeout: 2000,
-		  autoplayHoverPause: true,
+		  autoplayHoverPause: false,
 		});
 	  });	
 			

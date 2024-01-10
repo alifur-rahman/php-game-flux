@@ -38,143 +38,74 @@
 	<link href="<?php echo $this->themePath('css/glightbox.min.css') ?>" rel="stylesheet" />
 	<link href="<?php echo $this->themePath('css/remixicon.css') ?> " rel="stylesheet" />
 	<link href="<?php echo $this->themePath('css/swiper-bundle.min.css') ?>" rel="stylesheet" />
-	<link href="<?php echo $this->themePath('css/owl.carousel.min.css') ?> " rel="stylesheet" />
-	<link href="<?php echo $this->themePath('css/owl.theme.default.min.css') ?> " rel="stylesheet" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<!-- Theme Main CSS File -->
 	<link href="<?php echo $this->themePath('css/style.css') ?> " rel="stylesheet" />
-	<script type="text/javascript" src="<?php echo $this->themePath('js/jquery-1.8.3.min.js') ?> "></script>
+	<link href="<?php echo $this->themePath('css/additional.css') ?> " rel="stylesheet" />
+
+
 	<script type="text/javascript" src="<?php echo $this->themePath('js/flux.datefields.js') ?> "></script>
 	<script type="text/javascript" src="<?php echo $this->themePath('js/flux.unitip.js') ?> "></script>
 
-	<script type="text/javascript" src="<?php echo $this->themePath('js/jquery.min.js') ?> "></script>
-	<script type="text/javascript" src="<?php echo $this->themePath('js/owl.carousel.js') ?> "></script>
 
 
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 </head>
 
 <body>
 
-	<div class="bg-dark p-2 pe-4 server-status">
-		<iframe src="https://free.timeanddate.com/clock/i4ejlcxu/n179/fn13/fcbababa/tct/pct/tt0/tm1/tb2" frameborder="0"
-			width="282" height="18" allowtransparency="true" class="server-time"></iframe>
-		<span class="float-sm-end"><span class="text-label">Users Online:</span>
-			<span class="up">275</span> &nbsp;&nbsp;
-			<span class="text-label">Autotraders:</span>
-			<span class="up">766</span> &nbsp;&nbsp;
-			<span class="text-label">Total:</span>
-			<span class="up">1041</span> &nbsp;&nbsp;
-			<span class="text-label">Unique Logins(72h):</span>
-			<span class="up">757</span> &nbsp;&nbsp;
-			<span class="status-label">Status: <img src=" <?php echo $this->themePath('img/online.png') ?> "
-					height="20px" /></span></span>
-		<!-- End LowProfileMode -->
-	</div>
+
+	<?php include 'includes/header-top.php' ?>
 	<!-- ======= Header ======= -->
 	<header id="header" class="fixed-top">
 		<div class="container d-flex align-items-center">
+			<!-- Uncomment below if you prefer to use an image logo --><!-- <h1 class="logo me-auto"><a href="index.html">AlfheimRO</a></h1> -->
 			<a href="?module=main" class="logo me-auto"><img src="<?php echo $this->themePath('img/logo.png') ?>" alt=""
 					class="img-fluid" /></a>
-			<nav id="navbar" class="navbar">
-				<ul>
-					<li>
-						<a class="nav-link scrollto" href="?module=main">Home</a>
-					</li>
-					<li class="dropdown">
-						<a href="#"><span>Server Info</span></a>
-						<ul>
-							<li>
-								<a href="?module=server&action=info">About Server</a>
-							</li>
-							<li>
-								<a href="?module=ranking&action=character">Ranking</a>
-							</li>
-							<li>
-								<a href="#">About Us</a>
-							</li>
-							<li>
-								<a href="?module=woe">WOE Statistics</a>
-							</li>
-						</ul>
-					</li>
-
-					<li>
-						<a class="nav-link scrollto" href="wiki">Wiki</a>
-					</li>
-					<li>
-						<a class="nav-link scrollto" href="?module=donate">Donate</a>
-					</li>
-					<li>
-						<a class="nav-link scrollto" href="?module=pages&action=content&path=downloads">Download</a>
-					</li>
-					<li>
-						<a class="nav-link scrollto discord-nav" href="#">&nbsp;</a>
-					</li>
-				</ul>
-				<i class="bi bi-list mobile-nav-toggle">&nbsp;</i>
-			</nav>
+			<?php include 'includes/header-navs.php' ?>
 			<!-- .navbar -->
 			<!-- End LowProfileMode -->
 		</div>
 	</header>
 	<!-- End Header --><!-- ======= Hero Section ======= -->
 	<section id="hero" class="d-flex align-items-center">
+		<ul class="slideshow">
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+		</ul>
+		<div class="container-fluid">
+			<?php include 'includes/header-slider.php' ?>
+
+		</div>
 		<div class="container">
 			<!-- <div class="magic-circle"></div> -->
-			<div class="row">
-				<div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-					data-aos="fade-up" data-aos-delay="200">
-					<div class="login-panel mx-auto">
-						<img src="<?php echo $this->themePath('img/logo.png') ?>" alt=""
-							class="img-fluid users-area-logo" />
-						<p class="text-white text-center users-heading">USERS AREA</p>
-						<form action="/?module=account&amp;action=login&amp;return_url=" method="post">
-							<input type="hidden" name="server" value="AlfheimRO" />
-							<div class="login_row_main">
-								<div class="login_row">
-									<table>
-										<tr>
-											<td>
-												<input type="text" name="username" placeholder="Username"
-													class="textClass" id="username" />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="password" name="password" placeholder="Password"
-													class="textClass" id="password" />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="checkbox" value="lsRememberMe" id="rememberMe" /><label
-													for="rememberMe" class="text-white">Remember me</label>
-											</td>
-										</tr>
-									</table>
-								</div>
-								<div class="login_btn">
-									<input type="submit" value="LOGIN" class="loginBtn" /><br />
-								</div>
-								<div style="height: 5px"></div>
-							</div>
-							<div class="accountAction">
-								Don't have an account?
-								<a href="/?module=account&amp;action=create">Register Now!</a>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+
+
+			<!-- hero user area  -->
+			<!-- <?php include 'includes/header-user-area.php' ?> -->
+
 		</div>
 	</section>
 	<!-- End Hero -->
 	<!-- Content -->
 	<div class="global-container" id="main-cont">
-		<?php //include 'main/sidebar.php' ?>
-		<?php //include 'main/loginbox.php' ?>
 		<?php if (Flux::config('DebugMode') && @gethostbyname(Flux::config('ServerAddress')) == '127.0.0.1'): ?>
 			<p class="notice">Please change your <strong>ServerAddress</strong> directive in your application config to
 				your
@@ -189,11 +120,18 @@
 		<?php endif ?>
 
 		<!-- Sub menu -->
+		<?php include $this->themePath('main/submenu.php', true) ?>
 
 		<!-- Page menu -->
+		<?php include $this->themePath('main/pagemenu.php', true) ?>
 
 		<!-- Credit balance -->
-		<?php //if (in_array($params->get('module'), array('donate', 'purchase'))) include 'main/balance.php' ?>
-	</div>
+		<?php if (in_array($params->get('module'), array('donate', 'purchase')))
+			include $this->themePath('main/balance.php', true) ?>
 
-	<main id="main">
+
+		<?php if (in_array($params->get('module'), array('main'))): ?>
+		</div>
+		<main id="main">
+		<?php endif ?>
+		<!-- End Content -->

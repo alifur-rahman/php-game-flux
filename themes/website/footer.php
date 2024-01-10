@@ -1,7 +1,10 @@
-</main>
 <?php if (!defined('FLUX_ROOT'))
 	exit; ?>
-
+<?php if (in_array($params->get('module'), array('main'))): ?>
+	</main>
+<?php else: ?>
+	</div>
+<?php endif ?>
 <!-- ======= Footer ======= -->
 <div class="footer">
 	<div class="content-container container d-flex flex-wrap">
@@ -50,6 +53,8 @@
 <!-- Theme Switcher -->
 
 <script type="text/javascript" src="<?php echo $this->themePath('js/active.js?20220807.03') ?> "></script>
+<script type="text/javascript" src="<?php echo $this->themePath('js/alinclude.js') ?> "></script>
+
 
 
 <script type="text/javascript">
