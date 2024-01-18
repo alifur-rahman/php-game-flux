@@ -109,166 +109,195 @@
 	<?php endif ?>
 
 <?php else: ?>
+
 	<!-- ======= Server News Updates ======= -->
 	<section class="newsupdates content-wrap" id="newsupdates">
 		<div class="container">
-			<div class="section-title">
-				<h2>Latest News</h2>
-			</div>
-			<div class="news-updates">
-				<div class="tab-content row" id="nav-tabContent">
-					<div class="news-content owl-carousel owl-theme d-flex flex-wrap">
-						<div class="news-article card shadow m-3 mx-1" data-aos="flip-right" data-aos-delay="200">
-							<div class="card-img-top thumbnail-container">
-								<img class="img-fluid w-100 article-thumbnail"
-									src="<?php echo $this->themePath('img/newsthumbnails/A1webimage.jpg') ?> " />
-							</div>
-							<div class="card-body news-contain">
-								<span class="date">Oct 15, 2023</span>
-								<span class="article-type Content Update">Content Update</span>
-								<div style="height: 5px; display: block"></div>
-								<a class="card-title title" target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Episode_A_1_0_Old_Glast_Heim">Episode
-									A1.0: Old Glast ...</a>
-								<p class="card-text">
-									This episode brings Old Glast Heim, Airship Assault, new
-									costumes, and more!
-								</p>
-								<span class="author text-value font-italic font-weight-light">By: <b
-										class="text-danger">Charlie</b></span>
-								<a target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Episode_A_1_0_Old_Glast_Heim"><span
-										class="read-more" title="Read more...">Read more...</span></a>
-							</div>
-						</div>
-						<div class="news-article card shadow m-3 mx-1" data-aos="flip-right" data-aos-delay="200">
-							<div class="card-img-top thumbnail-container">
-								<img class="img-fluid w-100 article-thumbnail"
-									src=" <?php echo $this->themePath('img/newsthumbnails/namelessislandweb.jpg') ?> " />
-							</div>
-							<div class="card-body news-contain">
-								<span class="date">Sept 4, 2022</span>
-								<span class="article-type Content Update">Content Update</span>
-								<div style="height: 5px; display: block"></div>
-								<a class="card-title title" target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Episode_11.3_Nameless_Island">Episode
-									11.3, Nameless I...</a>
-								<p class="card-text">
-									With Episode 11.3 comes Nameless Island, Fallen Bishop,
-									Beelzebub and more!
-								</p>
-								<span class="author text-value font-italic font-weight-light">By: <b
-										class="text-danger">Charlie</b></span>
-								<a target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Episode_11.3_Nameless_Island"><span
-										class="read-more" title="Read more...">Read more...</span></a>
-							</div>
-						</div>
-						<div class="news-article card shadow m-3 mx-1" data-aos="flip-right" data-aos-delay="200">
-							<div class="card-img-top thumbnail-container">
-								<img class="img-fluid w-100 article-thumbnail"
-									src="<?php echo $this->themePath('img/newsthumbnails/thorvolcanoweb.jpg') ?> " />
-							</div>
-							<div class="card-body news-contain">
-								<span class="date">Aug 18, 2022</span>
-								<span class="article-type Content Update">Content Update</span>
-								<div style="height: 5px; display: block"></div>
-								<a class="card-title title" target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Episode_11.2_Veins">Episode 11.2,
-									Veins...</a>
-								<p class="card-text">
-									With Episode 11.2 comes Thors Volcano, Ifrit, Veins town
-									and more!
-								</p>
-								<span class="author text-value font-italic font-weight-light">By: <b
-										class="text-danger">Charlie</b></span>
-								<a target="_blank" href="https://projectalfheim.net/wiki/index.php/Episode_11.2_Veins"><span
-										class="read-more" title="Read more...">Read more...</span></a>
-							</div>
-						</div>
-						<div class="news-article card shadow m-3 mx-1" data-aos="flip-right" data-aos-delay="200">
-							<div class="card-img-top thumbnail-container">
-								<img class="img-fluid w-100 article-thumbnail"
-									src="<?php echo $this->themePath('img/newsthumbnails/summerevent.jpg') ?> " />
-							</div>
-							<div class="card-body news-contain">
-								<span class="date">Aug 1, 2022</span>
-								<span class="article-type Event">Event</span>
-								<div style="height: 5px; display: block"></div>
-								<a class="card-title title" target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Patch_Notes_August_1st_2022">Summer
-									Event ends soon...</a>
-								<p class="card-text">
-									The summer event reaches its final month, and with it
-									comes nighttime beach prontera! Make sure you spend your
-									Starfish Tokens soon and snatch up your costumes and
-									Wandering Duck pet while you can!
-								</p>
-								<span class="author text-value font-italic font-weight-light">By: <b
-										class="text-danger">Charlie</b></span>
-								<a target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Patch_Notes_August_1st_2022"><span
-										class="read-more" title="Read more...">Read more...</span></a>
-							</div>
-						</div>
-						<div class="news-article card shadow m-3 mx-1" data-aos="flip-right" data-aos-delay="200">
-							<div class="card-img-top thumbnail-container">
-								<img class="img-fluid w-100 article-thumbnail"
-									src="<?php echo $this->themePath('img/newsthumbnails/byalan6.jpg') ?> " />
-							</div>
-							<div class="card-body news-contain">
-								<span class="date">June 13, 2022</span>
-								<span class="article-type Content Update">Content Update</span>
-								<div style="height: 5px; display: block"></div>
-								<a class="card-title title" target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Summer_Event_2022">Lasagna and Byalan 6
-									Add...</a>
-								<p class="card-text">
-									Lasagna has been aded in with a newbie friendly tutorial
-									to help you get started! Byalan 6 offers a challenge for
-									more experienced players!
-								</p>
-								<span class="author text-value font-italic font-weight-light">By: <b
-										class="text-danger">Charlie</b></span>
-								<a target="_blank" href="https://projectalfheim.net/wiki/index.php/Summer_Event_2022"><span
-										class="read-more" title="Read more...">Read more...</span></a>
-							</div>
-						</div>
-						<div class="news-article card shadow m-3 mx-1" data-aos="flip-right" data-aos-delay="200">
-							<div class="card-img-top thumbnail-container">
-								<img class="img-fluid w-100 article-thumbnail"
-									src="<?php echo $this->themePath('img/newsthumbnails/randgris.jpg') ?> " />
-							</div>
-							<div class="card-body news-contain">
-								<span class="date">Mar 19, 2022</span>
-								<span class="article-type Content Update">Content Update</span>
-								<div style="height: 5px; display: block"></div>
-								<a class="card-title title" target="_blank"
-									href="https://projectalfheim.net/wiki/index.php/Kiel_Hugel_Odins">Episode 10.4:
-									Hugel...</a>
-								<p class="card-text">
-									With 10.4 comes Valkyrie Randgris and Odins Temple. Kiel
-									Hyre Quest with a skippable optoin and Hugel town itself
-									are also here!
-								</p>
-								<span class="author text-value font-italic font-weight-light">By: <b
-										class="text-danger">Charlie</b></span>
-								<a target="_blank" href="https://projectalfheim.net/wiki/index.php/Kiel_Hugel_Odins"><span
-										class="read-more" title="Read more...">Read more...</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="section-title mt-5">
 
+			<div class="al_newsSlider-wrapper">
+				<div class="section-title">
+					<h2>Latest News</h2>
+				</div>
+				<ul class="news-content  d-flex flex-wrap  cards al_def global_owl-carousel owl-carousel owl-theme">
+					<li>
+						<a href="#" class="card">
+							<img src="<?php echo $this->themePath('img/letes-slider/1.jpg') ?>" class="card__image"
+								alt="" />
+							<div class="card__overlay">
+								<div class="card__header">
+									<svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+										<path />
+									</svg>
+									<div class="card__header-text w-100">
+										<div class="d-flex justify-content-between pb-2">
+											<span class="date">Oct 15, 2023</span>
+											<span class="card__status">Content Update</span>
+										</div>
+										<h3 class="card__title">Episode A1.0: Old Glast
+											....</h3>
+										<p> This episode brings Old Glast Heim, Airship Assault, new
+											costumes, and more!</p>
+
+									</div>
+								</div>
+								<div class="card__description">
+
+									<div class="d-flex justify-content-between">
+										<span class="author text-value font-italic font-weight-light">By: <b
+												class="text-danger">Charlie</b></span>
+										<span class="read-more" title="Read more...">Read more...</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+
+					<li>
+						<a href="" class="card">
+							<img src="<?php echo $this->themePath('img/letes-slider/2.jpg') ?>" class="card__image"
+								alt="" />
+							<div class="card__overlay">
+								<div class="card__header">
+									<svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+										<path />
+									</svg>
+									<div class="card__header-text w-100">
+										<div class="d-flex justify-content-between pb-2">
+											<span class="date">Sept 4, 2022</span>
+											<span class="card__status">Content Update</span>
+										</div>
+										<h3 class="card__title">Episode 11.3, Nameless
+											I...</h3>
+										<p> With Episode 11.3 comes Nameless Island, Fallen Bishop,
+											Beelzebub and more!</p>
+
+									</div>
+								</div>
+								<div class="card__description">
+
+									<div class="d-flex justify-content-between">
+										<span class="author text-value font-italic font-weight-light">By: <b
+												class="text-danger">Charlie</b></span>
+										<span class="read-more" title="Read more...">Read more...</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+
+					<li>
+						<a href="" class="card">
+							<img src="<?php echo $this->themePath('img/letes-slider/3.jpg') ?>" class="card__image"
+								alt="" />
+							<div class="card__overlay">
+								<div class="card__header">
+									<svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+										<path />
+									</svg>
+									<div class="card__header-text w-100">
+										<div class="d-flex justify-content-between pb-2">
+											<span class="date">Aug 18, 2022</span>
+											<span class="card__status">Content Update</span>
+										</div>
+										<h3 class="card__title">Episode 11.2, Veins...</h3>
+										<p>With Episode 11.2 comes Thors Volcano, Ifrit, Veins town
+											and more!</p>
+
+									</div>
+								</div>
+								<div class="card__description">
+
+									<div class="d-flex justify-content-between">
+										<span class="author text-value font-italic font-weight-light">By: <b
+												class="text-danger">Charlie</b></span>
+										<span class="read-more" title="Read more...">Read more...</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+
+					<li>
+						<a href="" class="card">
+							<img src="<?php echo $this->themePath('img/letes-slider/4.jpg') ?>" class="card__image"
+								alt="" />
+							<div class="card__overlay">
+								<div class="card__header">
+									<svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+										<path />
+									</svg>
+									<div class="card__header-text w-100">
+										<div class="d-flex justify-content-between pb-2">
+											<span class="date">Aug 1, 2022</span>
+											<span class="card__status">Content Update</span>
+										</div>
+										<h3 class="card__title">Summer Event ends
+											soon...</h3>
+										<p> The summer event reaches its final month, and with it
+											comes nighttime beach prontera! Make sure you spend your
+											Starfish Tokens soon and snatch up your costumes and
+											Wandering Duck pet while you can!</p>
+
+									</div>
+								</div>
+								<div class="card__description">
+
+									<div class="d-flex justify-content-between">
+										<span class="author text-value font-italic font-weight-light">By: <b
+												class="text-danger">Charlie</b></span>
+										<span class="read-more" title="Read more...">Read more...</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+
+					<li>
+						<a href="" class="card">
+							<img src="<?php echo $this->themePath('img/letes-slider/5.jpg') ?>" class="card__image"
+								alt="" />
+							<div class="card__overlay">
+								<div class="card__header">
+									<svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+										<path />
+									</svg>
+									<div class="card__header-text w-100">
+										<div class="d-flex justify-content-between pb-2">
+											<span class="date">June 13, 2022</span>
+											<span class="card__status">Content Update</span>
+										</div>
+										<h3 class="card__title"> Lasagna and Byalan 6 Add...</h3>
+										<p> Lasagna has been aded in with a newbie friendly tutorial
+											to help you get started! Byalan 6 offers a challenge for
+											more experienced players! </p>
+
+									</div>
+								</div>
+								<div class="card__description">
+
+									<div class="d-flex justify-content-between">
+										<span class="author text-value font-italic font-weight-light">By: <b
+												class="text-danger">Charlie</b></span>
+										<span class="read-more" title="Read more...">Read more...</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+
+
+				</ul>
+			</div>
+
+
+
+			<div class="section-title mt-5">
 				<h2>Server Information</h2>
 				<p>
 					Project Alfheim is a Pre-Renewal MMORPG server that offers many
 					unique mechanics to spice things up such as Random Options on
 					gears, evolved pets, and more!
 				</p>
-
 			</div>
 			<table class="table bottommargin-lg info-table">
 				<thead>
@@ -353,7 +382,7 @@
 						<div class="data-stats row">
 							<div class="new-characters">
 								<div class="icon-chars">
-									<img src="<?php echo $this->themePath('img/accounts-bg.png') ?> " />
+									<img src="<?php echo $this->themePath('img/accounts-bg.png') ?>" />
 								</div>
 								<div class="num-stats">
 									<span class="num-data counter" data-number="102643">&nbsp;</span><br />
@@ -362,7 +391,7 @@
 							</div>
 							<div class="sign-ups">
 								<div class="icon-signups">
-									<img src="<?php echo $this->themePath('img/signup-bg.png') ?> " />
+									<img src="<?php echo $this->themePath('img/signup-bg.png') ?>" />
 								</div>
 								<div class="num-stats">
 									<span class="num-data counter" data-number="55127">&nbsp;</span><br />
@@ -392,7 +421,7 @@
 					<div class="features d-flex flex-wrap">
 						<div class="feature-card mb-4 col-md-4 px-2" data-aos="fade-up" data-aos-delay="0">
 							<div class="feature-cover">
-								<img src="<?php echo $this->themePath('img/customchanges/sittingregen.gif') ?> " alt=""
+								<img src="<?php echo $this->themePath('img/customchanges/sittingregen.gif') ?>" alt=""
 									class="img-fluid" />
 							</div>
 							<div class="feature-article shadow">
@@ -405,14 +434,15 @@
 									dramatically, giving inns 30 minutes increase agi and
 									blessing buffs, and having warps unlocked after visiting,
 									we hope things should feel better. You can read more
-									<a href="https://projectalfheim.net/wiki/index.php/Quality_of_Life_Changes">by clicking
+									<a href="https://projectalfheim.net/wiki/index.php/Quality_of_Life_Changes">by
+										clicking
 										here</a>
 								</p>
 							</div>
 						</div>
 						<div class="feature-card mb-4 col-md-4 px-2" data-aos="fade-up" data-aos-delay="300">
 							<div class="feature-cover">
-								<img src="<?php echo $this->themePath('img/customchanges/magnusexample.gif') ?> " alt=""
+								<img src="<?php echo $this->themePath('img/customchanges/magnusexample.gif') ?>" alt=""
 									class="img-fluid" />
 							</div>
 							<div class="feature-article shadow">
@@ -425,13 +455,14 @@
 									renewal and tweaked to be more balanced in a prerenewal
 									setting. Most classes and builds should at a bare minimum
 									feel viable and fun to use! You can see a complete list
-									<a href="https://projectalfheim.net/wiki/index.php/Skill_Changes">by clicking here</a>
+									<a href="https://projectalfheim.net/wiki/index.php/Skill_Changes">by clicking
+										here</a>
 								</p>
 							</div>
 						</div>
 						<div class="feature-card mb-4 col-md-4 px-2" data-aos="fade-up" data-aos-delay="600">
 							<div class="feature-cover">
-								<img src="<?php echo $this->themePath('img/customchanges/randomoptionsexample.gif') ?> "
+								<img src="<?php echo $this->themePath('img/customchanges/randomoptionsexample.gif') ?>"
 									alt="" class="img-fluid" />
 							</div>
 							<div class="feature-article shadow">
@@ -445,7 +476,8 @@
 									to existing pre-renewal builds! Now you have more long
 									term goals to grind for than just refines! You can read
 									more about these
-									<a href="https://projectalfheim.net/wiki/index.php/Random_Options">by clicking here.</a>
+									<a href="https://projectalfheim.net/wiki/index.php/Random_Options">by clicking
+										here.</a>
 								</p>
 							</div>
 						</div>
@@ -456,5 +488,7 @@
 	</section>
 	<!-- End Server Custom Changes and Server Information Section -->
 	<!-- End LowProfileMode -->
+
+
 
 <?php endif ?>
