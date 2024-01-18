@@ -7,35 +7,57 @@
 <?php endif ?>
 <!-- ======= Footer ======= -->
 <div class="footer">
-	<div class="content-container container d-flex flex-wrap">
-		<div class="mx-auto text-center">
-			<nav class="nav mb-2 mx-3 text-center">
-				<a class="nav-link" href="?module=main&amp;action=about">About Us</a>
-				<a class="nav-link" href="https://discord.gg/projectalfheim">Community</a>
-				<a class="nav-link" href="wiki">Wiki</a>
-			</nav>
+	<div class="">
+		<div class="new_footer_top">
+			<div class="mx-auto text-center">
+				<nav class="nav mb-2 mx-3 text-center justify-content-center">
+					<a class="nav-link" href="?module=main&amp;action=about">About Us</a>
+					<a class="nav-link" href="https://discord.gg/projectalfheim">Community</a>
+					<a class="nav-link" href="wiki">Wiki</a>
+				</nav>
 
-			<!-- End LowProfileMode -->
-			<p class="">© 2023「Project・Alfheim」. All Rights Reserved.</p>
-			<?php if (count(Flux::$appConfig->get('ThemeName', false)) > 1): ?>
-				<span>Theme:
-					<select name="preferred_theme" onchange="updatePreferredTheme(this)">
-						<?php foreach (Flux::$appConfig->get('ThemeName', false) as $themeName): ?>
-							<option value="<?php echo htmlspecialchars($themeName) ?>" <?php if ($session->theme == $themeName)
-								   echo ' selected="selected"' ?>>
-								<?php echo htmlspecialchars($themeName) ?>
-							</option>
-						<?php endforeach ?>
-					</select>
-				</span>
-			<?php endif ?>
+				<!-- End LowProfileMode -->
+				<p class="">© 2024「Project・Alfheim」. All Rights Reserved.</p>
+				<?php if (count(Flux::$appConfig->get('ThemeName', false)) > 1): ?>
+					<span>Theme:
+						<select name="preferred_theme" onchange="updatePreferredTheme(this)">
+							<?php foreach (Flux::$appConfig->get('ThemeName', false) as $themeName): ?>
+								<option value="<?php echo htmlspecialchars($themeName) ?>" <?php if ($session->theme == $themeName)
+									   echo ' selected="selected"' ?>>
+									<?php echo htmlspecialchars($themeName) ?>
+								</option>
+							<?php endforeach ?>
+						</select>
+					</span>
+				<?php endif ?>
+			</div>
+			<!-- <div class="footer_bg">
+				<div class="footer_bg_one"></div>
+				<div class="footer_bg_two"></div>
+			</div> -->
 		</div>
+		<!-- <div class="footer_bottom">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-6 col-sm-7">
+						<p class="mb-0 f_400">© 2024「Project・Alfheim」. All Rights Reserved.</p>
+					</div>
+
+				</div>
+			</div>
+		</div> -->
 	</div>
 
 	<form action="<?php echo $this->urlWithQs ?>" method="post" name="preferred_theme_form" style="display: none">
 		<input type="hidden" name="preferred_theme" value="" />
 	</form>
 </div>
+
+
+
+
+
+
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center">&nbsp;<i
 		class="fa fas fa-arrow-up">&nbsp;</i></a>
